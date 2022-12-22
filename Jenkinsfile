@@ -19,7 +19,7 @@ pipeline {
                 cleanWs()
                 // We need to explicitly checkout from SCM here
                 checkout scm
-                sh "..." // build java
+                sh "javac -classpath /usr/share/java/mysql-connector-j-8.0.31.jar HelloWorld.java" // build
 
 
             }

@@ -32,16 +32,3 @@ java -classpath /usr/share/java/mysql-connector-j-8.0.31.jar:. HelloWorld
 
 
 
-
-
-#============================================================================
-# some old stuff that i am keeping just in case i will need it
-#============================================================================
-
-# install mysql client
-#sudo apt install mysql-client-core-8.0 -y
-
-# compile
-#javac -classpath /usr/share/java/mysql-connector-j-8.0.31.jar HelloWorld.java
-
-#david9292intuit
