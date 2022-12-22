@@ -1,6 +1,7 @@
 # About the App
 
 This is a simple Java program that connects to an AWS Aurora MySQL database, creates an alias in the database with the value "Hello, World!", and then prints that value to the console.
+#
 # The Cloud Infrastructure:
 ### GitHub
 
@@ -22,12 +23,14 @@ This is a simple Java program that connects to an AWS Aurora MySQL database, cre
 
 - Stores the artifacts created by the Jenkins server and used on the newly created EC2 instances.
 
+#
+
 # Pipeline:
 
 The code goes through a pipeline with the following steps:
 
-    The developer creates a new commit and pushes it to the remote GitHub repository.
-    The new commit triggers a GitHub webhook that sends a ping to the Jenkins server.
-    Jenkins uses the Jenkins file stored in the GitHub repository to run the Jenkins job.
-    Jenkins builds the artifact and uploads it to the AWS S3 bucket.
-    The AWS CodeDeploy feature pulls the artifact and uploads it to a new EC2 instance in the auto-scaling group.
+1. The developer creates a new commit and pushes it to the remote GitHub repository.
+2. The new commit triggers a GitHub webhook that sends a ping to the Jenkins server.
+3. Jenkins uses the Jenkins file stored in the GitHub repository to run the Jenkins job.
+4. Jenkins builds the artifact and uploads it to the AWS S3 bucket.
+5. The AWS CodeDeploy feature pulls the artifact and uploads it to a new EC2 instance in the auto-scaling group.
