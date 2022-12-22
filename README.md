@@ -2,6 +2,7 @@
 
 This is a simple Java program that connects to an AWS Aurora MySQL database, creates an alias in the database with the value "Hello, World!", and then prints that value to the console.
 #
+#
 # The Cloud Infrastructure:
 ### GitHub
 
@@ -24,7 +25,7 @@ This is a simple Java program that connects to an AWS Aurora MySQL database, cre
 - Stores the artifacts created by the Jenkins server and used on the newly created EC2 instances.
 
 #
-
+#
 # Pipeline:
 
 The code goes through a pipeline with the following steps:
