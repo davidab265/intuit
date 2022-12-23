@@ -2,9 +2,9 @@
 
 This is a simple Java program that connects to an AWS Aurora MySQL database and creates an alias with the value "Hello, World!" When a HTTP GET request is received, the program prints that value.
 ### Files:
-- HelloWorld.java - the program
-- ec2-startup.sh - contains the commands that need to be run on new EC2 instances to ensure the application runs successfully
-- Jenkinsfile - the instructions for the CI process that the Jenkins server will run.
+- *HelloWorld.java* - the program
+- *ec2-startup.sh* - contains the commands that need to be run on new EC2 instances to ensure the application runs successfully
+- *Jenkinsfile* - the instructions for the CI process that the Jenkins server will run.
 #
 # The Cloud Infrastructure:
 ### GitHub
