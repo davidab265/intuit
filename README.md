@@ -64,3 +64,22 @@ The Jenkinsfile contains the following stages:
 
 ### The Auto-Scaling Group:
 To start, I created one EC2 instance and installed Java and the MySQL connector on it. I then ran the application on it and created an AMI image from that instance.
+
+
+
+
+
+
+#
+#
+# Security and availability issues::
+There are several security and availability measures that can be implemented in the project:
+
+- Implement strong passwords for the database, GitHub, and Jenkins.
+- Only allow access to a whitelist of IP addresses.
+- Use a private Git repository. The current one is public for easy viewing only.
+- Do not allow public access to the database. There is no public IP address assigned to the cluster. Only Amazon EC2 instances and other resources inside the VPC can connect to the cluster.
+- Consider creating an Aurora Replica or using a different availability zone (AZ) for increased availability.
+- Consider using a larger instance class.
+- Enable deletion protection to prevent the database from being deleted accidentally.
+- Secure the S3 bucket by blocking all public access.
