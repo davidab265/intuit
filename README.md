@@ -5,6 +5,8 @@ This is a simple Java program that connects to an AWS Aurora MySQL database and 
 - **HelloWorld.java** - the program
 - **ec2-startup.sh** - contains the commands that need to be run on new EC2 instances to ensure the application runs successfully
 - **Jenkinsfile** - the instructions for the CI process that the Jenkins server will run.
+- **start_server.sh** - starts the application.
+- **codedeploy.yaml** - instructions to codedeploy how to use the files in the zip file on S3 to deploy the newly created application.
 #
 # The Cloud Infrastructure:
 ### GitHub
@@ -25,7 +27,7 @@ This is a simple Java program that connects to an AWS Aurora MySQL database and 
 
 ### AWS S3 Bucket
 
-- Stores the artifacts created by the Jenkins server and used on the newly created EC2 instances.
+- Stores the artifacts created by the Jenkins server, and and used on the newly created EC2 instances.
 
 #
 #
@@ -59,20 +61,28 @@ The Jenkinsfile contains the following stages:
 
 - Builds the artifact.
 - Calculates the new tag of the new commit and pushes it to the repository.
-- Pushes the artifact to the AWS S3 bucket.
-- Sends an email to the developer with the status of the build.
+- zips all the necessary files for deployment.
+- Pushes the zip file to the AWS S3 bucket.
+- sends an email to the developer with the status of the build (success or failure).
 
 ### The Auto-Scaling Group:
-To start, I created one EC2 instance and installed Java and the MySQL connector on it. I then ran the application on it and created an AMI image from that instance.
+- The Auto-Scaling Group is configured to mininun 3 instances, and maximum 20 instances.
+- there is a Scaling policie that resizes the amount of instances according to the avrage CPU utilization.
+- there is a helth check that the load balancer does. if he didects that an instance is not helthy, it will terminate it and start a new one.
+- notifications are send out whenever Amazon EC2 Auto Scaling launches or terminates the EC2 instances in the Auto Scaling group.
 
 
+To start, I created one EC2 instance and installed Java and the MySQL connector on it. I then ran the application on it, checked that it works, and created an AMI image from that instance. I then used the instance as the instance that will be used in the auto scaling group.
+
+### CodeDeploy:
+The code deploy agent detects that a new zip file has been replaced in the S3 bucket and starts a new deployment on the auto scaling group using the files from the new zip archive.
 
 
 
 
 #
 #
-# Security and availability issues::
+# Security and availability issues:
 There are several security and availability measures that can be implemented in the project:
 
 - Implement strong passwords for the database, GitHub, and Jenkins.
@@ -83,3 +93,6 @@ There are several security and availability measures that can be implemented in 
 - Consider using a larger instance class.
 - Enable deletion protection to prevent the database from being deleted accidentally.
 - Secure the S3 bucket by blocking all public access.
+- the auto scaling group is deployed on all AZ in the region.
+
+**Note:** The instructions stated to allow access to the application only from the office IP. For this exam, it is okay to use the personal IP address. However, I was unable to find a way to access the application using that method. As a temporary solution, I have decided to allow access from all IP addresses for now.

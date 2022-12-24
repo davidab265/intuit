@@ -5,8 +5,10 @@ pipeline {
         timeout(time:15, unit:'MINUTES')
     }
     environment {
-        AWS_ACCOUNT_ID="381353240263"
-        AWS_REGION="us-east-1"
+        AWS_ACCOUNT_ID="232413634925"
+        AWS_REGION="ew-central-1"
+        APP_FILE="app.zip"
+        S3_URL="s3://intuit-3/"
 
     }
 
@@ -57,8 +59,8 @@ pipeline {
            steps {
                script {
                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-intuit', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                       
-                       sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_REPO}" //login
+                       sh "zip ${APP_FILE} HelloWorld.class codedeploy.yaml ec2-startup.sh start_server.sh" // zip all files that are used by codeeploy.
+                       sh "aws s3 cp ${APP_FILE} ${S3_URL}" // upload the archive to S3 bucket
 
                    }
                }

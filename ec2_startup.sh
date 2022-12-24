@@ -25,8 +25,6 @@ wget -q https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j_8.0.31
 sudo dpkg -i mysql-connector-j_8.0.31-1ubuntu20.04_all.deb 
 
 
-# run the program
-java -classpath /usr/share/java/mysql-connector-j-8.0.31.jar:. HelloWorld
 
 
 
