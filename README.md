@@ -95,4 +95,4 @@ There are several security and availability measures that can be implemented in 
 - Secure the S3 bucket by blocking all public access.
 - the auto scaling group is deployed on all AZ in the region.
 
-**Note:** The instructions stated to allow access to the application only from the office IP. For this exam, it is okay to use the personal IP address. However, I was unable to find a way to access the application using that method. As a temporary solution, I have decided to allow access from all IP addresses for now.
+**Note:** The instructions stated to allow access to the application only from the office IP. For this exam, it is okay to use the personal IP address. However, I was unable to find a way that you will be able to access the application using that method. As a temporary solution, I have decided to allow access from all IP addresses for now.
