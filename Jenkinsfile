@@ -7,7 +7,7 @@ pipeline {
     environment {
         AWS_ACCOUNT_ID="232413634925"
         AWS_REGION="ew-central-1"
-        APP_FILE="app.zip"
+        APP_FILE="app.tar"
         S3_URL="s3://intuit-3/"
 
     }
@@ -59,7 +59,7 @@ pipeline {
            steps {
                script {
                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                       sh "zip ${APP_FILE} HelloWorld.class codedeploy.yaml ec2-startup.sh start_server.sh" // zip all files that are used by codeeploy.
+                       sh "tar -cvf ${APP_FILE} HelloWorld.class AppSpec.yaml ec2_startup.sh start_server.sh" // zip all files that are used by codeeploy.
                        sh "aws s3 cp ${APP_FILE} ${S3_URL}" // upload the archive to S3 bucket
 
                    }
