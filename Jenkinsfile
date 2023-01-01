@@ -32,7 +32,7 @@ pipeline {
             when { branch 'master' }
             steps {
                 script{
-                    sshagent(credentials: ['intuit']) {
+                    sshagent(credentials: ['friday-1']) {
                         //sh "git fetch --all --tags" // not shure that this is needed, pulling the code pulles the tags as well
                         CURRENT_TAG = sh(script: "git tag | sort -V | tail -1", returnStdout: true)
                         if (CURRENT_TAG.isEmpty() ) {
@@ -58,7 +58,7 @@ pipeline {
            when { branch 'master' }
            steps {
                script {
-                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-intuit', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                        sh "zip ${APP_FILE} HelloWorld.class codedeploy.yaml ec2-startup.sh start_server.sh" // zip all files that are used by codeeploy.
                        sh "aws s3 cp ${APP_FILE} ${S3_URL}" // upload the archive to S3 bucket
 
