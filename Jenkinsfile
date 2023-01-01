@@ -35,10 +35,10 @@ pipeline {
                     sshagent(credentials: ['friday-1']) {
                         //sh "git fetch --all --tags" // not shure that this is needed, pulling the code pulles the tags as well
                         CURRENT_TAG = sh(script: "git tag | sort -V | tail -1", returnStdout: true)
-                        if (CURRENT_TAG.isEmpty() ) {
-                            NEW_TAG =  "1.0.0"
-                        } 
-                        else {
+                        //if (CURRENT_TAG.isEmpty() ) {
+                        //    NEW_TAG =  "1.0.0"
+                        //} 
+                        //else {
                             (major, minor, patch) = CURRENT_TAG.tokenize(".")
                             patch = patch.toInteger() + 1
                             NEW_TAG = "${major}.${minor}.${patch}"
