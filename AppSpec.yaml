@@ -5,7 +5,7 @@ files:
     destination: ~/
 hooks:
   BeforeInstall:
-    - location: ec2-startup.sh
+    - location: ec2_startup.sh
       timeout: 300
       runas: root
   ApplicationStart:
