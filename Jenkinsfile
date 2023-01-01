@@ -28,25 +28,30 @@ pipeline {
         }
 
         // update the correct release version. will be used to tag the artifact and the corrent git commit
-        stage('[2] Update Tag') {
-            when { branch 'master' }
-            steps {
-                script{
-                    sshagent(credentials: ['friday-1']) {
-                        //sh "git fetch --all --tags" // not shure that this is needed, pulling the code pulles the tags as well
-                        CURRENT_TAG = sh(script: "git tag | sort -V | tail -1", returnStdout: true)
-                            (major, minor, patch) = CURRENT_TAG.tokenize(".")
-                            patch = patch.toInteger() + 1
-                            NEW_TAG = "${major}.${minor}.${patch}"
-
-                        // add the new tag to corrent commit
-                        sh "git tag ${NEW_TAG}"
-                        sh "git push --tags"
-
-                    }
-                }
-            }
-        }
+        //stage('[2] Update Tag') {
+        //    when { branch 'master' }
+        //    steps {
+        //        script{
+        //            sshagent(credentials: ['friday-1']) {
+        //                //sh "git fetch --all --tags" // not shure that this is needed, pulling the code pulles the tags as well
+        //                CURRENT_TAG = sh(script: "git tag | sort -V | tail -1", returnStdout: true)
+        //                if (CURRENT_TAG.isEmpty() ) {
+        //                    NEW_TAG =  "1.0.0"
+        //                } 
+        //                else {
+        //                    (major, minor, patch) = CURRENT_TAG.tokenize(".")
+        //                    patch = patch.toInteger() + 1
+        //                    NEW_TAG = "${major}.${minor}.${patch}"
+//
+        //                }
+        //                // add the new tag to corrent commit
+        //                sh "git tag ${NEW_TAG}"
+        //                sh "git push --tags"
+//
+        //            }
+        //        }
+        //    }
+        //}
                 
 
         stage('[3] upload the artifact to AWS S3') {
