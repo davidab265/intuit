@@ -4,6 +4,7 @@ files:
   - source: .
     destination: ~/
 hooks:
+#
   BeforeInstall:
     - location: ec2_startup.sh
       timeout: 300
