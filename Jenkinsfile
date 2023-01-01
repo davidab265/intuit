@@ -79,12 +79,12 @@ pipeline {
                                [pattern: '.propsfile', type: 'EXCLUDE']])
 
         }
-        success { 
-            emailext body: " jenkins job [${JOB_NAME}](jobname/branch) hes succeeded! the new build is taged: ${NEW_TAG} . the results of the build can be found heer: ${BUILD_URL} ", recipientProviders: [buildUser()], subject: " jenkins ${JOB_NAME} success. new build tag: ${NEW_TAG} ", to: '9200200@gmail.com'  
-        }  
-        failure {  
-            emailext body: " jenkins [${JOB_NAME}](jobname/branch) failure. no new build was executed. the current build is: " , recipientProviders: [buildUser()], subject:  " jenkins ${JOB_NAME} failed :( ", to: '9200200@gmail.com';  
-        }  
+        //success { 
+        //    emailext body: " jenkins job [${JOB_NAME}](jobname/branch) hes succeeded! the new build is taged: ${NEW_TAG} . the results of the build can be found heer: ${BUILD_URL} ", recipientProviders: [buildUser()], subject: " jenkins ${JOB_NAME} success. new build tag: ${NEW_TAG} ", to: '9200200@gmail.com'  
+        //}  
+        //failure {  
+        //    emailext body: " jenkins [${JOB_NAME}](jobname/branch) failure. no new build was executed. the current build is: " , recipientProviders: [buildUser()], subject:  " jenkins ${JOB_NAME} failed :( ", to: '9200200@gmail.com';  
+        //}  
     }
 }
 
