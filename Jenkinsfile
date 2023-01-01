@@ -6,7 +6,7 @@ pipeline {
     }
     environment {
         AWS_ACCOUNT_ID="232413634925"
-        AWS_REGION="ew-central-1"
+        AWS_REGION="eu-central-1"
         APP_FILE="app.tar"
         S3_URL="s3://intuit-3/"
 
